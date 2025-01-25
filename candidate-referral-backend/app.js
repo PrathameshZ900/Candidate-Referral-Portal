@@ -9,11 +9,17 @@ const app = express();
 
 
 // Middleware
-app.use(cors());
 app.use(express.json())
 
 
+const corsOptions = {
+    origin: ['http://localhost:5173'], // Replace with your frontend's domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // HTTP methods to allow
+    credentials: true, // Include cookies in cross-origin requests if needed
+};
+app.use(cors(corsOptions));
 
+app.options('*', cors(corsOptions)); // Allow preflight for all routes
 
 
 
